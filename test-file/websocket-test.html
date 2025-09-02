@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WebSocket Test</title>
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+</head>
+<body>
+    <h1>WebSocket Test</h1>
+    <button onclick="connect()">Connect</button>
+    <button onclick="disconnect()">Disconnect</button>
+    <button onclick="sendTest()">Send Test Message</button>
+    <div id="status">Not connected</div>
+    <div id="messages"></div>
+
+    <script>
+        var stompClient = null;
+
+        function connect() {
+            var socket = new SockJS('http://localhost:8081/api/ws');
+            stompClient = Stomp.over(socket);
+            
+            stompClient.connect({}, function(frame) {
+                document.getElementById('status').innerHTML = 'Connected: ' + frame;
+                console.log('Connected: ' + frame);
+                
+                // Subscribe to contact updates
+                stompClient.subscribe('/topic/contacts', function(message) {
+                    showMessage('Contact Update: ' + message.body);
+                });
+                
+                // Subscribe to visitor activity
+                stompClient.subscribe('/topic/visitor-activity', function(message) {
+                    showMessage('Visitor Activity: ' + message.body);
+                });
+            });
+        }
+
+        function disconnect() {
+            if (stompClient !== null) {
+                stompClient.disconnect();
+            }
+            document.getElementById('status').innerHTML = 'Disconnected';
+        }
+
+        function sendTest() {
+            if (stompClient) {
+                stompClient.send("/app/test", {}, JSON.stringify({'message': 'Test from browser'}));
+            }
+        }
+
+        function showMessage(message) {
+            var messages = document.getElementById('messages');
+            messages.innerHTML += '<p>' + message + '</p>';
+        }
+    </script>
+</body>
+</html>

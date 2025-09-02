@@ -1,0 +1,94 @@
+server:
+  port: 8081
+  servlet:
+    context-path: /api
+
+spring:
+  application:
+    name: portfolio-backend
+
+  security:
+    user:
+      name: sweta
+      password: sweta123
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: swetasuman295@gmail.com
+    password: yeob bweg fbpo nnrg
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+        ssl:
+            trust: smtp.gmail.com
+
+  # Database Configuration
+  datasource:
+    url: jdbc:postgresql://localhost:5432/portfolio_db
+    driver-class-name: org.postgresql.Driver
+    username: sweta
+    password: sweta123
+
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+ 
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    consumer:
+      group-id: portfolio-group
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      auto-offset-reset: latest
+      properties:
+        spring.json.trusted.packages: "*"
+        spring.json.use.type.headers: false
+
+# Kafka Topics
+kafka:
+  topics:
+    contact-events: contact-events-topic
+    visitor-events: visitor-events-topic
+
+# CORS Configuration
+cors:
+  allowed-origins:
+    - http://localhost:4200
+    - http://localhost:3000
+
+# OpenAPI/Swagger
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: true
+
+# App Email Configuration
+app:
+  email:
+    from: ${EMAIL_FROM:swetasuman295@gmail.com}
+    to: ${EMAIL_TO:swetasuman295@gmail.com}
+    enabled: true
+
+# Logging
+logging:
+  level:
+    com.sweta.portfolio: DEBUG
+    org.springframework.kafka: INFO
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"

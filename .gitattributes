@@ -1,0 +1,21 @@
+# IDE files
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+
+# Build artifacts and compiled files
+target/
+build/
+*.jar
+*.war
+out/
+
+# Secrets and sensitive configuration
+application.properties
+application.yml
+
+# Log files and temp files
+*.log
+.DS_Store
