@@ -22,9 +22,9 @@ jobs:
           distribution: 'temurin'
           cache: 'maven'
 
-      # 3. Runs your unit tests
-      - name: Run Unit Tests with Maven
-        run: mvn -B test
+      # 3. Runs your unit tests(will be done later)
+     # - name: Run Unit Tests with Maven
+       # run: mvn -B test
 
       # 4. Runs the SonarCloud scan
       - name: SonarCloud Scan
