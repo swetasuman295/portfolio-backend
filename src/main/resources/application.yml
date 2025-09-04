@@ -29,7 +29,7 @@ spring:
 
   # Database Configuration
   datasource:
-    url: jdbc:postgresql://localhost:5432/portfolio_db
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/portfolio_db}
     driver-class-name: org.postgresql.Driver
     username: sweta
     password: sweta123

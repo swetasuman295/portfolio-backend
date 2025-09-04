@@ -23,7 +23,9 @@ public class CorsConfig {
             "http://localhost:4200",       // Angular dev
             "http://localhost:3000",       // React/alt dev
             "https://sweta-portfolio.com",
-            "http://localhost"// docker
+            "http://localhost",// docker
+            "http://192.168.68.129:9080/",
+            "familyhomecloud.synology.me"
         ));
         
         // Allowed HTTP methods

@@ -1,6 +1,6 @@
 package com.sweta.portfolio.controller;
 
-import com.sweta.portfolio.service.VisitorTrackingService;
+
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -8,8 +8,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.sweta.portfolio.service.VisitorTrackingService;
+
 import jakarta.annotation.PostConstruct;
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -37,18 +38,7 @@ public class VisitorController {
             
             Map<String, String> responseMap = new HashMap<>();
             responseMap.put("status", "SUCCESS");
-            String sessionId = null;
-            Cookie[] cookies = request.getCookies();
-            if (cookies != null) {
-                for (Cookie cookie : cookies) {
-                    if ("PORTFOLIO_SESSION_ID".equals(cookie.getName())) {
-                        sessionId = cookie.getValue();
-                        break;
-                    }
-                }
-            }
-            responseMap.put("sessionId", sessionId != null ? sessionId : "unknown");
-
+            responseMap.put("sessionId", request.getSession().getId());
             responseMap.put("message", "Session tracked successfully");
             
             log.info("Session tracked successfully: {}", request.getSession().getId());
