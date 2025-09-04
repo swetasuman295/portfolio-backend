@@ -5,9 +5,8 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build-test-analyze-and-push:
-    name: Build, Test, Analyze, and Push Docker Image
-    runs-on: ubuntu-latest
+   build-test-analyze:
+    runs-on: self-hosted
 
     services:
       postgres:
