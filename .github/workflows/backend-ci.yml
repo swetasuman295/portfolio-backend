@@ -23,8 +23,8 @@ jobs:
           cache: 'maven'
 
       # 3. Runs your unit tests(will be done later)
-     # - name: Run Unit Tests with Maven
-       # run: mvn -B test
+      - name: Run Unit Tests with Maven
+        run: mvn -B package -DskipTests
 
       # 4. Runs the SonarCloud scan
       - name: SonarCloud Scan
