@@ -72,7 +72,7 @@ services:
       - "8081:8081"
     environment:
       SPRING_PROFILES_ACTIVE: docker
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/portfolio_db
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/${DATABASE_NAME:-portfolio_db}
       SPRING_DATASOURCE_USERNAME: sweta
       SPRING_DATASOURCE_PASSWORD: sweta123
       SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:29092
