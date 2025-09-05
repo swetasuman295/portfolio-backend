@@ -21,12 +21,14 @@ jobs:
           distribution: 'temurin'
           cache: 'maven'
 
-
-      # 3. Runs your unit tests(will be done later)
+      - name: Install Maven
+        run: |
+         sudo apt update
+         sudo apt install -y maven
       - name: Run Unit Tests with Maven
         run: |
-         mvn -B verify sonar:sonar -DskipTests \
-          -Dsonar.projectKey=swetasuman295_portfolio-backend \ -Dsonar.organization=swetasuman295
+          mvn -B verify sonar:sonar -DskipTests \
+           -Dsonar.projectKey=swetasuman295_portfolio-backend  -Dsonar.organization=swetasuman295
 
       # 4. Runs the SonarCloud scan
       - name: SonarCloud Scan
