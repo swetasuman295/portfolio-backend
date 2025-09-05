@@ -1,19 +1,30 @@
-name: Deploy Backend
+name: Build and Push
+
 on:
   push:
     branches: [main]
 
 jobs:
-  deploy:
+  build-backend:
     runs-on: ubuntu-latest
+    
     steps:
       - uses: actions/checkout@v3
-
-      - name: Log in to Docker Hub
-        run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
-
-      - name: Build and Push
+      
+      - name: Build and Push Backend
         run: |
-          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/portfolio-backend:latest .
+          docker build -t swetasuman295/portfolio-backend:latest ./portfolio-backend
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/portfolio-backend:latest
+          docker push swetasuman295/portfolio-backend:latest
+  
+  build-frontend:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Build and Push Frontend
+        run: |
+          docker build -t swetasuman295/portfolio-frontend:latest ./sweta-suman-portfolio
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+          docker push swetasuman295/portfolio-frontend:latest
