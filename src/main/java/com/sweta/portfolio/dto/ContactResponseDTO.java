@@ -1,6 +1,5 @@
 package com.sweta.portfolio.dto;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
