@@ -21,13 +21,12 @@ jobs:
           distribution: 'temurin'
           cache: 'maven'
 
-      # Compile the project FIRST
-      - name: Compile project
-        run: mvn clean compile
 
       # 3. Runs your unit tests(will be done later)
       - name: Run Unit Tests with Maven
-        run: mvn -B package -DskipTests -Dspring.profiles.active=ci
+        run: |
+         mvn -B verify sonar:sonar -DskipTests \
+          -Dsonar.projectKey=swetasuman295_portfolio-backend \ -Dsonar.organization=swetasuman295
 
       # 4. Runs the SonarCloud scan
       - name: SonarCloud Scan
