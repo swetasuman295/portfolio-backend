@@ -8,22 +8,6 @@ jobs:
    build-test-analyze:
     runs-on: self-hosted
 
-    services:
-      postgres:
-        image: postgres:15-alpine
-        env:
-          POSTGRES_DB: portfolio_db
-          POSTGRES_USER: sweta
-          POSTGRES_PASSWORD: sweta123
-        ports:
-          - 5432:5432
-        options: >-
-           --health-cmd="pg_isready -U sweta"
-           --health-interval=10s
-           --health-timeout=5s
-           --health-retries=5
-
-
     steps:
       # 1. Checks out a copy of your repository
       - name: Checkout code
