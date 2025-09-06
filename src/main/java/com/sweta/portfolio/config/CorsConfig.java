@@ -27,7 +27,7 @@ public class CorsConfig {
             "http://192.168.68.129:9080/",
             "familyhomecloud.synology.me",
             "http://192.168.68.129:80/",
-            "https://swetasuman295.github.io/sweta-suman-portfolio/"
+            "https://swetasuman295.github.io"
         ));
         
         // Allowed HTTP methods
