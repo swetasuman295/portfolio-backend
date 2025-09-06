@@ -16,4 +16,3 @@ jobs:
         run: |
           docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/portfolio-backend:latest .
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/portfolio-backend:latest
-		  
