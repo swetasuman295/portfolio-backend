@@ -25,7 +25,8 @@ public class CorsConfig {
             "https://sweta-portfolio.com",
             "http://localhost",// docker
             "http://192.168.68.129:9080/",
-            "familyhomecloud.synology.me"
+            "familyhomecloud.synology.me",
+            "http://192.168.68.129:80/"
         ));
         
         // Allowed HTTP methods

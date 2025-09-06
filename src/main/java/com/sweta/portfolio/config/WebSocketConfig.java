@@ -33,7 +33,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         // Create WebSocket endpoint at /ws
-        registry.addEndpoint("/api/ws")
+        registry.addEndpoint("/ws")
                 .setAllowedOrigins(
                     "http://localhost:4200",    // Angular dev server
                     "http://localhost:3000",    // Alternative frontend
