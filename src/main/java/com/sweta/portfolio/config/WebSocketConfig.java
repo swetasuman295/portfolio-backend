@@ -33,13 +33,14 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         // Create WebSocket endpoint at /ws
-        registry.addEndpoint("/ws")
+        registry.addEndpoint("/api/ws")
                 .setAllowedOrigins(
                     "http://localhost:4200",    // Angular dev server
                     "http://localhost:3000",    // Alternative frontend
                     "https://sweta-portfolio.com", // Production domain
                     "http://localhost",
-                    "http://192.168.68.129:9080/",
+                    "http://192.168.68.129", 
+                    "http://192.168.68.129:80",
                     "familyhomecloud.synology.me"
                 )
                 .withSockJS();  // Enable SockJS fallback for browsers that don't support WebSocket
