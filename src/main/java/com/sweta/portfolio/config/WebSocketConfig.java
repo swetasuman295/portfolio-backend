@@ -42,7 +42,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
                     "http://192.168.68.129", 
                     "http://192.168.68.129:80",
                     "familyhomecloud.synology.me",
-                    "https://swetasumanw295.github.io"
+                    "https://swetasuman295.github.io"
                 )
                 .withSockJS();  // Enable SockJS fallback for browsers that don't support WebSocket
     }
