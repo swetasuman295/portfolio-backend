@@ -26,7 +26,8 @@ public class CorsConfig {
             "http://localhost",// docker
             "http://192.168.68.129:9080/",
             "familyhomecloud.synology.me",
-            "http://192.168.68.129:80/"
+            "http://192.168.68.129:80/",
+            "https://swetasuman295.github.io/sweta-suman-portfolio/"
         ));
         
         // Allowed HTTP methods
