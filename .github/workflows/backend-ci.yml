@@ -24,11 +24,11 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
-             - -Dspring.profiles.active=ci \
+             -Dspring.profiles.active=ci \
              -Dsonar.projectKey=your-project-key
 
       - name: OWASP Dependency Check
-        run: mvn org.owasp:dependency-check-maven:check -DskipTests -Dspring.profiles.active=ci
+        run: mvn org.owasp:dependency-check-maven:check -DskipTests
 
   build-and-deploy:
     runs-on: ubuntu-latest
