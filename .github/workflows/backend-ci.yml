@@ -34,7 +34,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
              -Dspring.profiles.active=ci \
-             -Dsonar.projectKey=swetasuman295_portfolio-backend
+             -Dsonar.projectKey=swetasuman295_portfolio-backend \
              -Dsonar.organization=swetasuman295
 
       - name: OWASP Dependency Check
