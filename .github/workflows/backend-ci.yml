@@ -26,7 +26,7 @@ jobs:
         run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
              -Dspring.profiles.active=ci \
              -Dsonar.projectKey=your-project-key
-             -Dsonar.organization=your-organization-key
+             -Dsonar.organization=swetasuman295
 
       - name: OWASP Dependency Check
         run: mvn org.owasp:dependency-check-maven:check -DskipTests
