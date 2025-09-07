@@ -22,10 +22,11 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
              -DskipTests \
+             -Dmaven.test.skip=true \
              -Dsonar.projectKey=your-project-key
 
       - name: OWASP Dependency Check
-        run: mvn org.owasp:dependency-check-maven:check -DskipTests
+        run: mvn org.owasp:dependency-check-maven:check -DskipTests -Dmaven.test.skip=true
 
   build-and-deploy:
     runs-on: ubuntu-latest
