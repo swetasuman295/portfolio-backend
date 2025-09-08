@@ -25,7 +25,7 @@ import java.util.HashMap;
 public class VisitorController {
 
     private final VisitorTrackingService visitorTrackingService;
-
+    private static final String SUCCESS_STATUS = "SUCCESS";
     /**
      * Track when someone visits the portfolio
      * Called automatically when Angular app loads
@@ -37,7 +37,7 @@ public class VisitorController {
             visitorTrackingService.trackVisitorSession(request,response);
             
             Map<String, String> responseMap = new HashMap<>();
-            responseMap.put("status", "SUCCESS");
+            responseMap.put("status", SUCCESS_STATUS);
             responseMap.put("sessionId", request.getSession().getId());
             responseMap.put("message", "Session tracked successfully");
             
@@ -75,7 +75,7 @@ public class VisitorController {
             visitorTrackingService.trackPageView(sessionId, page, previousPage, timeSpent);
 
             Map<String, String> response = new HashMap<>();
-            response.put("status", "SUCCESS");
+            response.put("status",SUCCESS_STATUS);
             response.put("message", "Page view tracked");
             
             return ResponseEntity.ok(response);
@@ -116,7 +116,7 @@ public class VisitorController {
         log.info("=== Test endpoint called ===");
         
         Map<String, String> response = new HashMap<>();
-        response.put("status", "SUCCESS");
+        response.put("status", SUCCESS_STATUS);
         response.put("message", "VisitorController is working");
         response.put("timestamp", java.time.LocalDateTime.now().toString());
         

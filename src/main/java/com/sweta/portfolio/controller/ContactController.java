@@ -37,7 +37,7 @@ public class ContactController {
             description = "Process a contact form submission with automatic priority detection")
     @ApiResponse(responseCode = "201", description = "Contact created successfully")
     @ApiResponse(responseCode = "400", description = "Invalid input data")
-    public ResponseEntity<?> submitContact(
+    public ResponseEntity<Object> submitContact(
             @Valid @RequestBody ContactDTO contactDTO,
             BindingResult bindingResult,
             @RequestHeader(value = "X-Real-IP", required = false) String ipAddress,

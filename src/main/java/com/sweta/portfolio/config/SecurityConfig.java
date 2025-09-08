@@ -24,7 +24,7 @@ public class SecurityConfig {
                 .anyRequest().permitAll()
             )
             .headers(headers -> headers
-                .frameOptions().sameOrigin()
+            		 .frameOptions(frameOptions -> frameOptions.sameOrigin())
             );
 
         return http.build();

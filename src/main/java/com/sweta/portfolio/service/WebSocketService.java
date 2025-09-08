@@ -16,7 +16,7 @@ import java.util.Map;
 public class WebSocketService {
     
     private final SimpMessagingTemplate messagingTemplate;
-    
+    private static final String TIMESTAMP_KEY = "timestamp";
     /**
      * Broadcast contact update to all connected clients
      */
@@ -27,7 +27,7 @@ public class WebSocketService {
         update.put("email", contact.getEmail());
         update.put("status", contact.getStatus().toString());
         update.put("priority", contact.getPriority() != null ? contact.getPriority().toString() : "MEDIUM");
-        update.put("timestamp", LocalDateTime.now().toString());
+        update.put(TIMESTAMP_KEY, LocalDateTime.now().toString());
         update.put("type", "CONTACT_UPDATE");
         
         log.info("Broadcasting contact update for: {}", contact.getId());
@@ -44,7 +44,7 @@ public class WebSocketService {
         notification.put("title", title);
         notification.put("message", message);
         notification.put("severity", severity); // INFO, WARNING, ERROR, SUCCESS
-        notification.put("timestamp", LocalDateTime.now().toString());
+        notification.put(TIMESTAMP_KEY, LocalDateTime.now().toString());
         
         log.info("Sending admin notification: {}", title);
         
@@ -59,7 +59,7 @@ public class WebSocketService {
         Map<String, Object> activity = new HashMap<>();
         activity.put("page", page);
         activity.put("action", action);
-        activity.put("timestamp", LocalDateTime.now().toString());
+        activity.put(TIMESTAMP_KEY, LocalDateTime.now().toString());
         activity.put("type", "VISITOR_ACTIVITY");
         
         log.debug("Broadcasting visitor activity: {} on {}", action, page);
@@ -71,7 +71,7 @@ public class WebSocketService {
      * Send analytics update
      */
     public void broadcastAnalyticsUpdate(Map<String, Object> analytics) {
-        analytics.put("timestamp", LocalDateTime.now().toString());
+        analytics.put(TIMESTAMP_KEY, LocalDateTime.now().toString());
         analytics.put("type", "ANALYTICS_UPDATE");
         
         log.info("Broadcasting analytics update");
@@ -85,7 +85,7 @@ public class WebSocketService {
     public void sendPrivateMessage(String userId, String message) {
         Map<String, Object> privateMsg = new HashMap<>();
         privateMsg.put("message", message);
-        privateMsg.put("timestamp", LocalDateTime.now().toString());
+        privateMsg.put(TIMESTAMP_KEY, LocalDateTime.now().toString());
         privateMsg.put("type", "PRIVATE_MESSAGE");
         
         log.info("Sending private message to user: {}", userId);
