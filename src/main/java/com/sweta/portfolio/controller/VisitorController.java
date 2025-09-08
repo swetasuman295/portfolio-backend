@@ -26,6 +26,13 @@ public class VisitorController {
 
     private final VisitorTrackingService visitorTrackingService;
     private static final String SUCCESS_STATUS = "SUCCESS";
+    private static final String ERROR_STATUS = "ERROR";
+    private static final String UP_STATUS = "UP";
+    
+    // Response field keys
+    private static final String STATUS_KEY = "status";
+    private static final String MESSAGE_KEY = "message";
+    private static final String SESSION_ID_KEY = "sessionId";
     /**
      * Track when someone visits the portfolio
      * Called automatically when Angular app loads
@@ -37,9 +44,9 @@ public class VisitorController {
             visitorTrackingService.trackVisitorSession(request,response);
             
             Map<String, String> responseMap = new HashMap<>();
-            responseMap.put("status", SUCCESS_STATUS);
-            responseMap.put("sessionId", request.getSession().getId());
-            responseMap.put("message", "Session tracked successfully");
+            responseMap.put(STATUS_KEY, SUCCESS_STATUS);
+            responseMap.put(SESSION_ID_KEY, request.getSession().getId());
+            responseMap.put(MESSAGE_KEY, "Session tracked successfully");
             
             log.info("Session tracked successfully: {}", request.getSession().getId());
             return ResponseEntity.ok(responseMap);
@@ -48,8 +55,8 @@ public class VisitorController {
             log.error("Failed to track visitor session", e);
             
             Map<String, String> errorResponse = new HashMap<>();
-            errorResponse.put("status", "ERROR");
-            errorResponse.put("message", "Failed to track session: " + e.getMessage());
+            errorResponse.put(STATUS_KEY,ERROR_STATUS);
+            errorResponse.put(MESSAGE_KEY, "Failed to track session: " + e.getMessage());
             
             return ResponseEntity.ok(errorResponse);
         }
@@ -75,8 +82,8 @@ public class VisitorController {
             visitorTrackingService.trackPageView(sessionId, page, previousPage, timeSpent);
 
             Map<String, String> response = new HashMap<>();
-            response.put("status",SUCCESS_STATUS);
-            response.put("message", "Page view tracked");
+            response.put(STATUS_KEY,SUCCESS_STATUS);
+            response.put(MESSAGE_KEY, "Page view tracked");
             
             return ResponseEntity.ok(response);
 
@@ -84,8 +91,8 @@ public class VisitorController {
             log.error("Failed to track page view", e);
             
             Map<String, String> errorResponse = new HashMap<>();
-            errorResponse.put("status", "ERROR");
-            errorResponse.put("message", "Failed to track page view: " + e.getMessage());
+            errorResponse.put(STATUS_KEY, ERROR_STATUS);
+            errorResponse.put(MESSAGE_KEY, "Failed to track page view: " + e.getMessage());
             
             return ResponseEntity.ok(errorResponse);
         }
@@ -101,7 +108,7 @@ public class VisitorController {
         String userAgent = request.getHeader("User-Agent");
 
         Map<String, String> response = new HashMap<>();
-        response.put("sessionId", sessionId);
+        response.put(SESSION_ID_KEY, sessionId);
         response.put("ipAddress", ipAddress);
         response.put("userAgent", userAgent != null ? userAgent : "Unknown");
         
@@ -116,8 +123,8 @@ public class VisitorController {
         log.info("=== Test endpoint called ===");
         
         Map<String, String> response = new HashMap<>();
-        response.put("status", SUCCESS_STATUS);
-        response.put("message", "VisitorController is working");
+        response.put(STATUS_KEY, SUCCESS_STATUS);
+        response.put(MESSAGE_KEY, "VisitorController is working");
         response.put("timestamp", java.time.LocalDateTime.now().toString());
         
         return ResponseEntity.ok(response);
