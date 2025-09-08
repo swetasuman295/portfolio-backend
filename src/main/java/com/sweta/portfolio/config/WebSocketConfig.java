@@ -39,8 +39,6 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
                     "http://localhost:3000",    // Alternative frontend
                     "https://sweta-portfolio.com", // Production domain
                     "http://localhost",
-                    "http://192.168.68.129", 
-                    "http://192.168.68.129:80",
                     "familyhomecloud.synology.me",
                     "https://swetasuman295.github.io"
                 )

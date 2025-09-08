@@ -10,7 +10,7 @@ import org.springframework.kafka.support.converter.JsonMessageConverter;
 import org.springframework.kafka.support.converter.RecordMessageConverter;
 
 @Configuration
-@Profile("!ci") // 
+@Profile("!ci") 
 public class KafkaConfig {
     
     
