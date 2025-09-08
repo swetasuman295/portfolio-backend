@@ -7,6 +7,8 @@ import com.sweta.portfolio.entity.Contact;
 import com.sweta.portfolio.kafka.events.ContactProcessedEvent;
 import com.sweta.portfolio.kafka.events.ContactSubmittedEvent;
 import com.sweta.portfolio.repository.ContactRepository;
+import com.sweta.portfolio.service.EmailService;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
