@@ -75,6 +75,7 @@ public class VisitorTrackingService {
         sessionCookie.setMaxAge(SESSION_COOKIE_MAX_AGE);
         sessionCookie.setPath("/");
         sessionCookie.setHttpOnly(true);
+        sessionCookie.setSecure(true);
         response.addCookie(sessionCookie);
         
         return newSessionId;

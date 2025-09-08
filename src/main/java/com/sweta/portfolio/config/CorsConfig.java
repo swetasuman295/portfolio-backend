@@ -24,9 +24,7 @@ public class CorsConfig {
             "http://localhost:3000",       // React/alt dev
             "https://sweta-portfolio.com",
             "http://localhost",// docker
-            "http://192.168.68.129:9080/",
             "familyhomecloud.synology.me",
-            "http://192.168.68.129:80/",
             "https://swetasuman295.github.io"
         ));
         
