@@ -109,9 +109,6 @@ public class EmailService {
             
             mailSender.send(message);
             
-            
-            //log.info("HTML email would be sent to: {}", to);
-            
         } catch (Exception e) {
             log.error("Failed to send HTML email", e);
             throw new RuntimeException("Email sending failed", e);

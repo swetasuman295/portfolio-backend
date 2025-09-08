@@ -7,8 +7,6 @@ import com.sweta.portfolio.entity.Contact;
 import com.sweta.portfolio.kafka.events.ContactProcessedEvent;
 import com.sweta.portfolio.kafka.events.ContactSubmittedEvent;
 import com.sweta.portfolio.repository.ContactRepository;
-import com.sweta.portfolio.service.EmailService;
-//import com.sweta.portfolio.service.WebSocketService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -118,14 +116,6 @@ public class ContactEventConsumer {
 			// Perform analysis based on message content
 			analyzeAndProcessContact(updatedContact, event);
 
-//			// Send real-time update via WebSocket
-//			try {
-//				webSocketService.broadcastContactUpdate(updatedContact);
-//				log.info("Sent WebSocket update for contact: {}", updatedContact.getId());
-//			} catch (Exception e) {
-//				log.error("Failed to send WebSocket update", e);
-//			}
-
 			// Send email notification for high priority contacts
 			try {
 				if ("URGENT".equals(event.getPriority()) || "HIGH".equals(event.getPriority())) {
@@ -148,6 +138,7 @@ public class ContactEventConsumer {
 		}
 	}
 
+	
 	/**
 	 * Analyze the contact and update accordingly
 	 */
@@ -180,7 +171,7 @@ public class ContactEventConsumer {
 
 		// Update contact with analysis results
 		contact.setStatus(Contact.ContactStatus.ANALYZED);
-		Contact analyzedContact = contactRepository.save(contact);
+		
 		log.info("Analysis for contact {}: {}", contact.getId(), analysis.toString());
 	}
 

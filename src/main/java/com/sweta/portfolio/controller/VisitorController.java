@@ -136,7 +136,7 @@ public class VisitorController {
     @GetMapping("/health")
     public ResponseEntity<Map<String, String>> health() {
         Map<String, String> response = new HashMap<>();
-        response.put("status", "UP");
+        response.put(STATUS_KEY, "UP");
         response.put("service", "VisitorTrackingService");
         
         return ResponseEntity.ok(response);
